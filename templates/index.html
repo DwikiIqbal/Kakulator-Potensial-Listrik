@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Potensial Listrik</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-bolt"></i>
+                <span>ElectroCalc</span>
+            </div>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </header>
+
+        <div class="main-grid">
+            <div class="card">
+                <h2 class="card-title"><i class="fas fa-calculator"></i> Kalkulator Potensial Listrik</h2>
+                <div class="input-group">
+                    <label>Konstanta Coulomb (k)</label>
+                    <div class="input-field">
+                        <input type="number" id="k" value="8.99e9" step="0.01">
+                        <div class="unit">N·m²/C²</div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Muatan Listrik (q₁)</label>
+                    <div class="input-field">
+                        <input type="number" id="q1" value="1.6e-9" step="0.000000000000001">
+                        <div class="unit">C</div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Muatan Listrik (q₂)</label>
+                    <div class="input-field">
+                        <input type="number" id="q2" value="-1.6e-9" step="0.000000000000001">
+                        <div class="unit">C</div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Jarak Antara Muatan (r)</label>
+                    <div class="input-row">
+                        <div class="input-field">
+                            <input type="number" id="r" value="0.1" step="0.001">
+                            <div class="unit">m</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-calculate" id="calculateBtn">
+                    <i class="fas fa-bolt"></i> Hitung Potensial Listrik
+                </button>
+
+                <div class="result-container" id="resultContainer">
+                    <div class="result-label">Potensial Listrik (V)</div>
+                    <div class="result-value" id="resultValue">0.00</div>
+                    <div class="result-unit" id="resultUnit">Volt (V)</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title"><i class="fas fa-chart-line"></i> Visualisasi</h2>
+                <div class="visualization" id="visualization">
+                    <div class="charge charge-positive" id="charge1">
+                        <span>+</span>
+                    </div>
+                    <div class="charge charge-negative" id="charge2">
+                        <span>-</span>
+                    </div>
+                    <div class="force-indicator" id="forceIndicator">
+                        <i class="fas fa-arrows-alt-h"></i>
+                    </div>
+                </div>
+
+                <div class="tabs">
+                    <div class="tab active" data-tab="steps">Langkah Perhitungan</div>
+                    <div class="tab" data-tab="material">Materi Pembelajaran</div>
+                    <div class="tab" data-tab="examples">Contoh Soal</div>
+                </div>
+
+                <div class="tab-content active" id="stepsContent">
+                    <div class="step">
+                        <div class="step-title">Langkah 1: Memasukkan Nilai</div>
+                        <div class="step-content">
+                            Masukkan nilai konstanta Coulomb (k), muatan listrik (q₁ dan q₂), 
+                            serta jarak antara kedua muatan (r).
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">Langkah 2: Menghitung Pembilang</div>
+                        <div class="step-content">
+                            Hitung hasil perkalian: k × q₁ × q₂<br>
+                            <span id="step2Result">-2.30 × 10<sup>-8</sup></span>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">Langkah 3: Membagi dengan Jarak</div>
+                        <div class="step-content">
+                            Bagi hasil sebelumnya dengan r (jarak)<br>
+                            <span id="step3Result">-2.30 × 10<sup>-7</sup></span>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">Langkah 4: Hasil Akhir</div>
+                        <div class="step-content">
+                            Hasil perhitungan potensial listrik: <br>
+                            <span class="scientific" id="step4Result">-2.30 × 10<sup>-7</sup> Volt</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="materialContent">
+                    <h3 class="card-title"><i class="fas fa-book"></i> Konsep Potensial Listrik</h3>
+                    <div class="material-content">
+                        <p>Potensial listrik adalah besarnya energi potensial listrik per satuan muatan 
+                        pada suatu titik dalam medan listrik. Potensial listrik merupakan besaran skalar 
+                        yang diukur dalam satuan volt (V).</p>
+                        
+                        <div class="formula-box">
+                            $$ V = \frac{k \cdot q_1 \cdot q_2}{r} $$
+                        </div>
+                        
+                        <p>Keterangan:</p>
+                        <ul>
+                            <li>V = Potensial listrik (Volt)</li>
+                            <li>k = Konstanta Coulomb (8.99 × 10<sup>9</sup> N·m²/C²)</li>
+                            <li>q₁ dan q₂ = Muatan listrik (Coulomb)</li>
+                            <li>r = Jarak antara dua muatan (meter)</li>
+                        </ul>
+                        
+                        <p>Potensial listrik bernilai positif jika kedua muatan sejenis (sama-sama positif 
+                        atau sama-sama negatif), dan bernilai negatif jika kedua muatan berbeda jenis.</p>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="examplesContent">
+                    <div class="example">
+                        <div class="example-title">
+                            <i class="fas fa-star"></i> Contoh Soal 1 
+                            <span class="difficulty easy">Mudah</span>
+                        </div>
+                        <p>Dua muatan masing-masing +3 μC dan -3 μC terpisah sejauh 0.5 m. 
+                        Hitung potensial listrik pada titik tengah antara kedua muatan!</p>
+                        <p><strong>Penyelesaian:</strong><br>
+                        V = (k × q₁ × q₂) / r<br>
+                        = (8.99e9 × 3e-6 × -3e-6) / 0.25<br>
+                        = (8.99e9 × -9e-12) / 0.25<br>
+                        = -8.091e-2 / 0.25 = -0.32364 V</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">
+                            <i class="fas fa-star-half-alt"></i> Contoh Soal 2
+                            <span class="difficulty medium">Sedang</span>
+                        </div>
+                        <p>Dua muatan identik sebesar +5 nC terletak pada sumbu x di x = -0.2 m dan x = +0.2 m. 
+                        Berapa potensial listrik di titik (0, 0.3 m)?</p>
+                        <p><strong>Penyelesaian:</strong><br>
+                        Hitung jarak masing-masing muatan ke titik: √(0.2² + 0.3²) = 0.361 m<br>
+                        Potensial dari masing-masing muatan: V = kq/r = 8.99e9 × 5e-9 / 0.361 ≈ 124.65 V<br>
+                        Total potensial = 2 × 124.65 V = 249.3 V</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">
+                            <i class="fas fa-star"></i> Contoh Soal 3
+                            <span class="difficulty hard">Sulit</span>
+                        </div>
+                        <p>Empat muatan identik sebesar +2 μC terletak di sudut-sudut persegi dengan sisi 0.4 m. 
+                        Hitung potensial listrik di pusat persegi!</p>
+                        <p><strong>Penyelesaian:</strong><br>
+                        Jarak setiap muatan ke pusat: (0.4/√2) = 0.283 m<br>
+                        Potensial dari satu muatan: V = kq/r = 8.99e9 × 2e-6 / 0.283 ≈ 63,530 V<br>
+                        Total potensial = 4 × 63,530 V = 254,120 V</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2023 Kalkulator Potensial Listrik | Dibuat dengan <i class="fas fa-heart" style="color:#e63946;"></i> untuk Fisika</p>
+            <p>Konstanta Coulomb (k) = 8.99 × 10<sup>9</sup> N·m²/C²</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
