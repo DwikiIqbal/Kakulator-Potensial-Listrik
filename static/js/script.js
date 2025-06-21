@@ -87,9 +87,8 @@ function calculatePotential() {
         console.error('Error:', error);
         alert('Terjadi kesalahan dalam perhitungan');
     });
-}
-
-function sanitizeInput(value) {
+    
+}function sanitizeInput(value) {
     const sanitized = value.replace(',', '.').trim();
     if (sanitized === '' || isNaN(Number(sanitized))) {
         throw new Error("Input tidak valid: " + value);
@@ -139,6 +138,9 @@ function calculatePotential() {
 
 }
 
+
+
+
 // Fungsi untuk memperbarui visualisasi
 function updateVisualization(q1, q2) {
     const charge1 = document.getElementById('charge1');
@@ -184,11 +186,7 @@ function updateVisualization(q1, q2) {
 document.getElementById('calculateBtn').addEventListener('click', calculatePotential);
 
 
-// Hitung otomatis saat input berubah
-const inputs = document.querySelectorAll('input');
-inputs.forEach(input => {
-    input.addEventListener('input', calculatePotential);
-});
+
 
 // Inisialisasi
 document.addEventListener('DOMContentLoaded', () => {
