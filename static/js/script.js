@@ -48,6 +48,7 @@ function toScientific(num) {
     };
 }
 
+
 // Fungsi untuk menghitung potensial listrik
 function calculatePotential() {
     // Ambil nilai dari input
@@ -86,6 +87,56 @@ function calculatePotential() {
         console.error('Error:', error);
         alert('Terjadi kesalahan dalam perhitungan');
     });
+}
+
+function sanitizeInput(value) {
+    const sanitized = value.replace(',', '.').trim();
+    if (sanitized === '' || isNaN(Number(sanitized))) {
+        throw new Error("Input tidak valid: " + value);
+    }
+    return sanitized;
+}
+
+function calculatePotential() {
+    try {
+        // Ambil dan sanitasi input dari form
+        const k = sanitizeInput(document.getElementById('k').value);
+        const q1 = sanitizeInput(document.getElementById('q1').value);
+        const q2 = sanitizeInput(document.getElementById('q2').value);
+        const r = sanitizeInput(document.getElementById('r').value);
+
+        // Kirim ke backend
+        fetch('/calculate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ k, q1, q2, r })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+                return;
+            }
+
+            // Tampilkan hasil
+            document.getElementById('resultValue').innerHTML = data.scientific.potential.formatted;
+            document.getElementById('step2Result').innerHTML = data.scientific.numerator.formatted;
+            document.getElementById('step3Result').innerHTML = data.scientific.potential.formatted;
+            document.getElementById('step4Result').innerHTML = `${data.scientific.potential.formatted} Volt`;
+
+            updateVisualization(parseFloat(q1), parseFloat(q2));
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Terjadi kesalahan dalam perhitungan');
+        });
+
+    } catch (error) {
+        alert(error.message); // tampilkan jika input kosong atau salah
+    }
+
 }
 
 // Fungsi untuk memperbarui visualisasi
@@ -131,6 +182,7 @@ function updateVisualization(q1, q2) {
 
 // Event listener untuk tombol hitung
 document.getElementById('calculateBtn').addEventListener('click', calculatePotential);
+
 
 // Hitung otomatis saat input berubah
 const inputs = document.querySelectorAll('input');

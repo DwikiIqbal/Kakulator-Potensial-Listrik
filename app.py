@@ -1,8 +1,15 @@
 from flask import Flask, render_template, jsonify, request
 
+
 app = Flask(__name__)
 
 # Konstanta Coulomb
+
+import numpy as np  
+
+app = Flask(__name__)
+
+
 COULOMB_CONSTANT = 8.99e9
 
 @app.route('/')
@@ -24,11 +31,18 @@ def calculate():
                 'error': 'Jarak (r) harus lebih besar dari nol!'
             }), 400
         
+
         # Hitung potensial listrik
         numerator = k * q1 * q2
         potential = numerator / r
         
         # Format hasil
+
+
+        numerator = k * q1 * q2
+        potential = numerator / r
+        
+
         result = {
             'potential': potential,
             'numerator': numerator,
@@ -65,4 +79,10 @@ def to_scientific(num):
     }
 
 if __name__ == '__main__':
+
     app.run(debug=True)
+
+    app.run(debug=True)
+
+    app.run(debug=True)
+
