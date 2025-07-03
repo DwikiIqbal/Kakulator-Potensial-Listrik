@@ -1,17 +1,10 @@
 from flask import Flask, render_template, jsonify, request
-
 import numpy as np
 
 app = Flask(__name__)
 
-# Konstanta Coulomb
-
-import numpy as np  
-
-app = Flask(__name__)
-
-
-COULOMB_CONSTANT = 8.99e9
+# Konstanta Coulomb tetap
+COULOMB_CONSTANT = 9e9
 
 @app.route('/')
 def index():
@@ -25,30 +18,19 @@ def calculate():
         q1 = float(data['q1'])
         q2 = float(data['q2'])
         r = float(data['r'])
-        k = float(data['k']) if 'k' in data else COULOMB_CONSTANT
+        k = COULOMB_CONSTANT
         
         if r <= 0:
-            return jsonify({
-                'error': 'Jarak (r) harus lebih besar dari nol!'
-            }), 400
-        
-
-        # Hitung potensial listrik
-        numerator = k * q1 * q2
-        potential = numerator / r
-        
-        # Format hasil
-
+            return jsonify({'error': 'Jarak (r) harus lebih besar dari nol!'}), 400
 
         numerator = k * q1 * q2
         potential = numerator / r
         
-
         result = {
             'potential': potential,
             'numerator': numerator,
             'steps': {
-                'step1': f"V = k × q₁ × q₂ / r",
+                'step1': "V = k × q₁ × q₂ / r",
                 'step2': f"V = ({k}) × ({q1}) × ({q2}) / {r}",
                 'step3': f"V = {numerator} / {r}",
                 'step4': f"V = {potential} Volt"
@@ -58,13 +40,10 @@ def calculate():
                 'numerator': to_scientific(numerator)
             }
         }
-        
         return jsonify(result)
     
     except (ValueError, TypeError) as e:
-        return jsonify({
-            'error': 'Input tidak valid: ' + str(e)
-        }), 400
+        return jsonify({'error': 'Input tidak valid: ' + str(e)}), 400
 
 def to_scientific(num):
     if num == 0:
@@ -80,10 +59,4 @@ def to_scientific(num):
     }
 
 if __name__ == '__main__':
-
     app.run(debug=True)
-
-    app.run(debug=True)
-
-    app.run(debug=True)
-
