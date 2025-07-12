@@ -86,6 +86,7 @@
                                 <li>q = Muatan listrik (Coulomb)</li>
                                 <li>r = Jarak dari muatan ke titik pengukuran (meter)</li>
                             </ul>
+                            <p>Potensial listrik merupakan besaran skalar, artinya hanya memiliki nilai tanpa arah. Potensial listrik positif menunjukkan muatan positif, dan potensial listrik negatif menunjukkan muatan negatif.</p>
                         </div>
                     </div>
                     
@@ -100,6 +101,32 @@
                                 V<sub>total</sub> = V<sub>1</sub> + V<sub>2</sub> + ... + V<sub>n</sub>
                             </div>
                             <p>Potensial listrik adalah besaran skalar, sehingga penjumlahannya dilakukan secara aljabar biasa (bukan vektor).</p>
+                            <p>Hal ini berbeda dengan medan listrik yang merupakan besaran vektor sehingga memerlukan penjumlahan vektor.</p>
+                            <div class="formula">
+                                V<sub>total</sub> = k × 
+                                <div class="fraction">
+                                    <span class="numerator">q<sub>1</sub></span>
+                                    <span class="denominator">r<sub>1</sub></span>
+                                </div>
+                                + k × 
+                                <div class="fraction">
+                                    <span class="numerator">q<sub>2</sub></span>
+                                    <span class="denominator">r<sub>2</sub></span>
+                                </div>
+                                + ... + k × 
+                                <div class="fraction">
+                                    <span class="numerator">q<sub>n</sub></span>
+                                    <span class="denominator">r<sub>n</sub></span>
+                                </div>
+                            </div>
+                            <p>Atau dapat ditulis sebagai:</p>
+                            <div class="formula">
+                                V<sub>total</sub> = k × Σ
+                                <div class="fraction">
+                                    <span class="numerator">q<sub>i</sub></span>
+                                    <span class="denominator">r<sub>i</sub></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
@@ -123,7 +150,28 @@
                             </div>
                             
                             <div class="example">
-                                <h4>Contoh 2: Empat Muatan</h4>
+                                <h4>Contoh 2: Dua Muatan Berlawanan Tanda</h4>
+                                <p>Dua muatan q₁ = 5 × 10⁻⁹ C dan q₂ = -3 × 10⁻⁹ C masing-masing berjarak 0.2 m dan 0.3 m dari titik P. Hitung potensial total di titik P!</p>
+                                <p><strong>Penyelesaian:</strong></p>
+                                <div class="formula">
+                                    V₁ = (9 × 10<sup>9</sup>) × 
+                                    <div class="fraction">
+                                        <span class="numerator">5 × 10⁻⁹</span>
+                                        <span class="denominator">0.2</span>
+                                    </div> = 225 V
+                                    <br>
+                                    V₂ = (9 × 10<sup>9</sup>) × 
+                                    <div class="fraction">
+                                        <span class="numerator">-3 × 10⁻⁹</span>
+                                        <span class="denominator">0.3</span>
+                                    </div> = -90 V
+                                    <br><br>
+                                    V<sub>total</sub> = V₁ + V₂ = 225 + (-90) = 135 V
+                                </div>
+                            </div>
+                            
+                            <div class="example">
+                                <h4>Contoh 3: Empat Muatan</h4>
                                 <p>Empat muatan q₁ = 10 × 10⁻⁹ C, q₂ = 20 × 10⁻⁹ C, q₃ = 30 × 10⁻⁹ C, dan q₄ = 40 × 10⁻⁹ C masing-masing berjarak 0.1 m dari titik P. Hitung potensial total di titik P!</p>
                                 <p><strong>Penyelesaian:</strong></p>
                                 <div class="formula">
@@ -143,6 +191,44 @@
                                     = 9 × 10³ = 9,000 Volt
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <i class="fas fa-flask"></i> Aplikasi dalam Kehidupan Sehari-hari
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Konsep potensial listrik memiliki banyak aplikasi dalam kehidupan sehari-hari dan teknologi:</p>
+                            <ul>
+                                <li><strong>Sistem Kelistrikan Rumah:</strong> Tegangan listrik di rumah (220V) adalah contoh potensial listrik</li>
+                                <li><strong>Baterai dan Aki:</strong> Menyediakan beda potensial untuk mengalirkan arus listrik</li>
+                                <li><strong>Peralatan Medis:</strong> EKG mengukur perbedaan potensial listrik di permukaan tubuh</li>
+                                <li><strong>Tabung Sinar Katoda (CRT):</strong> Menggunakan beda potensial tinggi untuk mempercepat elektron</li>
+                                <li><strong>Pengendali Polusi Udara:</strong> Menggunakan beda potensial tinggi untuk mengendapkan partikel polutan</li>
+                                <li><strong>Percetakan Laser:</strong> Menggunakan prinsip elektrostatika dan beda potensial untuk menempatkan tinta</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <i class="fas fa-exclamation-triangle"></i> Batasan dan Catatan Penting
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Beberapa hal penting yang perlu diperhatikan dalam perhitungan potensial listrik:</p>
+                            <ul>
+                                <li>Rumus V = k·q/r hanya berlaku untuk muatan titik (point charge)</li>
+                                <li>Untuk distribusi muatan kontinu (kawat, cincin, pelat), diperlukan pendekatan integral</li>
+                                <li>Jarak (r) harus selalu positif dan tidak boleh nol</li>
+                                <li>Potensial listrik di titik tak hingga adalah nol</li>
+                                <li>Potensial listrik adalah besaran skalar sehingga tidak memiliki arah</li>
+                                <li>Satuan potensial listrik adalah Volt (V) = Joule/Coulomb</li>
+                                <li>Perhitungan ini mengabaikan efek medan listrik eksternal</li>
+                                <li>Untuk akurasi tinggi, perlu mempertimbangkan permitivitas medium (ε)</li>
+                            </ul>
                         </div>
                     </div>
                 </div>

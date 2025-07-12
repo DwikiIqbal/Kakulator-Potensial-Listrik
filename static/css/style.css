@@ -435,6 +435,8 @@ input[type="text"]:focus {
     max-height: 1000px;
 }
 
+
+
 .example {
     background: rgba(67, 97, 238, 0.1);
     padding: 1rem;
@@ -517,6 +519,93 @@ footer {
     transform: rotate(30deg) scale(1.1);
 }
 
+.accordion-content ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.accordion-content li {
+    margin-bottom: 0.5rem;
+}
+
+.example {
+    background: rgba(67, 97, 238, 0.1);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+
+.dark-mode .example {
+    background: rgba(67, 97, 238, 0.2);
+}
+
+.example h4 {
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+    border-bottom: 1px solid rgba(67, 97, 238, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.dark-mode .example h4 {
+    color: var(--success);
+    border-color: rgba(76, 201, 240, 0.3);
+}
+
+.formula {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+.dark-mode .formula {
+    background: rgba(45, 55, 72, 0.7);
+}
+
+.accordion-content p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+.accordion-content {
+    padding: 0 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.accordion-content.active {
+    padding: 1rem;
+    max-height: 60vh; /* Tinggi maksimum 60% viewport */
+    overflow-y: auto; /* Tambahkan scrollbar jika konten melebihi tinggi */
+    scrollbar-width: thin; /* Scrollbar tipis untuk modern browser */
+    scrollbar-color: var(--primary) var(--light-gray); /* Warna scrollbar */
+}
+
+.accordion-content.active::-webkit-scrollbar {
+    width: 8px;
+}
+
+.accordion-content.active::-webkit-scrollbar-track {
+    background: var(--light-gray);
+    border-radius: 10px;
+}
+
+.accordion-content.active::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+.dark-mode .accordion-content.active::-webkit-scrollbar-track {
+    background: #4a5568;
+}
+
+.dark-mode .accordion-content.active::-webkit-scrollbar-thumb {
+    background: var(--success);
+}
+
+
 /* Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
@@ -536,6 +625,10 @@ footer {
 .rotate {
     transform: rotate(180deg);
     transition: transform 0.3s ease;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
 }
 
 @media (max-width: 768px) {

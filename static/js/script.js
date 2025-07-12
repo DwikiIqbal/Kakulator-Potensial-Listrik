@@ -14,18 +14,18 @@ document.addEventListener('DOMContentLoaded', function() {
         num = parseFloat(num);
         if (isNaN(num)) return "NaN";
         if (num === 0) return "0";
-        
+
         const absNum = Math.abs(num);
         const exponent = Math.floor(Math.log10(absNum));
         const coefficient = num / Math.pow(10, exponent);
-        
-        // Format lebih rapi untuk angka besar
+
+        // Format dengan koma sebagai pemisah desimal
         if (Math.abs(exponent) >= 3) {
-            return coefficient.toFixed(3) + ' × 10<sup>' + exponent + '</sup>';
+            return coefficient.toFixed(3).replace('.', ',') + ' × 10<sup>' + exponent + '</sup>';
         }
-        
-        // Format biasa untuk angka kecil
-        return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
+
+        // Format biasa
+        return num.toLocaleString('id-ID', { maximumFractionDigits: 4 });
     }
 
     // Generate form input berdasarkan jumlah muatan
